@@ -1,0 +1,1928 @@
+Connecting to database specified by database.yml
+  [1m[36m (880.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (24.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.5ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSightings (20130708064555)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (181.8ms)[0m  [1mCREATE TABLE "sightings" ("id" serial primary key, "location" character varying(255), "latitude" float, "longitude" float, "image" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130708064555')
+  [1m[36m (1.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "sightings"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (57.0ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:02:37 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.73996590000001], ["location", "10 E 21st Street, New York, NY"], ["longitude", -73.9901312], ["updated_at", Mon, 08 Jul 2013 15:02:37 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:03:00 -0400
+Processing by SightingsController#index as HTML
+  Rendered sightings/index.html.haml within layouts/application (5.8ms)
+Compiled nsa_snowden.css  (63ms)  (pid 23325)
+Compiled application.css  (141ms)  (pid 23325)
+Compiled jquery.js  (2ms)  (pid 23325)
+Compiled jquery_ujs.js  (0ms)  (pid 23325)
+Compiled application.js  (149ms)  (pid 23325)
+Completed 200 OK in 521ms (Views: 520.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sightings/2" for 127.0.0.1 at 2013-07-08 11:03:09 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSighting Load (27.2ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+Completed 500  in 76ms
+
+ActiveRecord::RecordNotFound - Couldn't find Sighting with id=2:
+  activerecord (3.2.13) lib/active_record/relation/finder_methods.rb:343:in `find_one'
+  activerecord (3.2.13) lib/active_record/relation/finder_methods.rb:314:in `find_with_ids'
+  activerecord (3.2.13) lib/active_record/relation/finder_methods.rb:107:in `find'
+  activerecord (3.2.13) lib/active_record/querying.rb:5:in `find'
+  app/controllers/sightings_controller.rb:6:in `show'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__3885621122014357738__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236058425760/variables" for 127.0.0.1 at 2013-07-08 11:03:09 -0400
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:03:12 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (1.1ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.6ms)
+Completed 200 OK in 30ms (Views: 13.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:08:26 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.6ms)
+Completed 200 OK in 18ms (Views: 15.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:08:37 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.7ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.2ms)
+Completed 200 OK in 20ms (Views: 12.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:08:43 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.1ms)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:09:38 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.8ms)
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:09:45 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.2ms)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:10:29 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.2ms)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:13:58 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (1.0ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (2.6ms)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:14:47 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (3.3ms)
+Completed 200 OK in 18ms (Views: 15.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:20:10 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 15ms (Views: 12.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:22:40 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (2.2ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.4ms)
+Compiled nsa_snowden.css  (37ms)  (pid 23325)
+Compiled application.css  (2ms)  (pid 23325)
+Completed 200 OK in 69ms (Views: 65.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:22:53 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.1ms)
+Compiled nsa_snowden.css  (4ms)  (pid 23325)
+Compiled application.css  (1ms)  (pid 23325)
+Completed 200 OK in 93ms (Views: 90.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:23:16 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.6ms)
+Completed 200 OK in 15ms (Views: 12.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:31:01 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (2.2ms)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:32:00 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.1ms)
+Completed 200 OK in 13ms (Views: 10.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:32:59 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (2.1ms)
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:33:21 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (1.8ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 18ms (Views: 13.5ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/__better_errors/70236058425760/variables" for 127.0.0.1 at 2013-07-08 11:45:46 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:45:50 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (4.2ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (87ms)  (pid 23325)
+Completed 200 OK in 184ms (Views: 135.2ms | ActiveRecord: 38.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:45:57 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (1.0ms)
+Completed 200 OK in 15ms (Views: 12.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:46:00 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (1.0ms)
+Completed 200 OK in 13ms (Views: 11.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:46:54 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (4.6ms)
+Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:47:03 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (1.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (1.1ms)
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 1.6ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:47:43 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (4.4ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:47:51 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (1.1ms)
+Completed 200 OK in 14ms (Views: 12.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:47:53 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (1.2ms)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:48:52 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+ERROR: compiling _app_views_sightings_index_html_haml___1424125019959434369_70236060879940 RAISED /Users/davidaaron/Documents/wdi/labs/Week7/d1/nsa_snowden/app/views/sightings/index.html.haml:29: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+Function body:           def _app_views_sightings_index_html_haml___1424125019959434369_70236060879940(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "sightings/index";_old_output_buffer = @output_buffer;;begin;extend Haml::Helpers;_hamlout = @haml_buffer = Haml::Buffer.new(haml_buffer, {:autoclose=>["meta", "img", "link", "br", "hr", "input", "area", "param", "col", "base"], :preserve=>["textarea", "pre", "code"], :attr_wrapper=>"'", :ugly=>false, :format=>:html5, :encoding=>"UTF-8", :escape_html=>true, :escape_attrs=>true, :hyphenate_data_attrs=>true, :cdata=>false});_erbout = _hamlout.buffer;@output_buffer = output_buffer ||= ActionView::OutputBuffer.new rescue nil;;_hamlout.push_text("<h1>\n  Where's Edward?\n</h1>\n#{
+
+
+_hamlout.format_script_false_false_false_true_false_true_false(( image_tag 'edward.jpg'
+));}\n<table>\n  <thead>\n    <tr>\n      <th>\n        Sighting ID\n      </th>\n      <th>\n        Location\n      </th>\n      <th>\n        Latitude\n      </th>\n      <th>\n        Longitude\n      </th>\n    </tr>\n  </thead>\n  <tbody></tbody>\n", 1, false);
+
+
+
+
+
+
+
+
+
+
+
+
+@sighting.each do |sighting|
+_hamlout.push_text("  <tr>\n    <td>\n      #{_hamlout.adjust_tabs(2); 
+
+_hamlout.format_script_false_false_false_true_false_true_false((sighting.id
+));}\n    </td>\n    <td>\n      #{
+_hamlout.format_script_false_false_false_true_false_true_false((sighting.location
+));}\n    </td>\n    <td>\n      #{
+_hamlout.format_script_false_false_false_true_false_true_false((sighting.longitude
+));}\n    </td>\n    <td>\n      #{
+_hamlout.format_script_false_false_false_true_false_true_false((sighting.latitude
+));}\n    </td>\n    <td>\n      #{
+_hamlout.format_script_false_false_false_true_false_true_false((link_to sighting.name, sighting_path sighting
+));}\n    </td>\n  </tr>\n", -2, false);end;_hamlout.push_text("</table>\n", -1, false);::Haml::Util.html_safe(_erbout);ensure;@haml_buffer = @haml_buffer.upper if @haml_buffer;end;
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:297:in `module_eval'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:297:in `compile'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:244:in `block in compile!'
+<internal:prelude>:10:in `synchronize'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:232:in `compile!'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:144:in `block in render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications.rb:125:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/template.rb:143:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications.rb:123:in `block in instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications.rb:123:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_view/renderer/renderer.rb:17:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb:88:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/rendering.rb:16:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activerecord-3.2.13/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/base.rb:167:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:405:in `__run_callback'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications.rb:123:in `block in instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/notifications.rb:123:in `instrument'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activerecord-3.2.13/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/base.rb:121:in `process'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb:45:in `process'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal.rb:203:in `dispatch'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_controller/metal.rb:246:in `block in action'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/routing/route_set.rb:612:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/meta_request-0.2.7/lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-contrib-1.1.0/lib/rack/contrib/response_headers.rb:17:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/meta_request-0.2.7/lib/meta_request/middlewares/headers.rb:16:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/meta_request-0.2.7/lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/etag.rb:23:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/conditionalget.rb:25:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/session/abstract/id.rb:210:in `context'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/session/abstract/id.rb:205:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/cookies.rb:341:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activerecord-3.2.13/lib/active_record/query_cache.rb:64:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activerecord-3.2.13/lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:405:in `__run_callback'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/better_errors-0.9.0/lib/better_errors/middleware.rb:84:in `protected_app_call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/better_errors-0.9.0/lib/better_errors/middleware.rb:79:in `better_errors_call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/better_errors-0.9.0/lib/better_errors/middleware.rb:56:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/rack/logger.rb:32:in `call_app'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/rack/logger.rb:16:in `block in call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/tagged_logging.rb:22:in `tagged'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/rack/logger.rb:16:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/quiet_assets-1.0.2/lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/methodoverride.rb:21:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/runtime.rb:17:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/activesupport-3.2.13/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/lock.rb:15:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/static.rb:63:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/engine.rb:479:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/application.rb:223:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/content_length.rb:14:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/railties-3.2.13/lib/rails/rack/log_tailer.rb:17:in `call'
+/Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/rack-1.4.5/lib/rack/handler/webrick.rb:59:in `service'
+/Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+/Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+/Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+  Rendered sightings/index.html.haml within layouts/application (95.1ms)
+Completed 500  in 99ms
+
+SyntaxError - /Users/davidaaron/Documents/wdi/labs/Week7/d1/nsa_snowden/app/views/sightings/index.html.haml:29: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '(':
+  app/views/sightings/index.html.haml:29:in `'
+  actionpack (3.2.13) lib/action_view/template.rb:297:in `compile'
+  actionpack (3.2.13) lib/action_view/template.rb:244:in `block in compile!'
+  <internal:prelude>:10:in `synchronize'
+  actionpack (3.2.13) lib/action_view/template.rb:232:in `compile!'
+  actionpack (3.2.13) lib/action_view/template.rb:144:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236026459440/variables" for 127.0.0.1 at 2013-07-08 11:48:52 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:49:00 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (5.8ms)
+Completed 500  in 10ms
+
+NoMethodError - undefined method `name' for #<Sighting:0x007fc233f2afd8>:
+  activemodel (3.2.13) lib/active_model/attribute_methods.rb:407:in `method_missing'
+  activerecord (3.2.13) lib/active_record/attribute_methods.rb:149:in `method_missing'
+  app/views/sightings/index.html.haml:29:in `block in _app_views_sightings_index_html_haml___1424125019959434369_70236027802580'
+  app/views/sightings/index.html.haml:18:in `_app_views_sightings_index_html_haml___1424125019959434369_70236027802580'
+  actionpack (3.2.13) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236060443320/variables" for 127.0.0.1 at 2013-07-08 11:49:00 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:49:07 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (5.7ms)
+Completed 500  in 10ms
+
+ArgumentError - wrong number of arguments (1 for 0):
+  app/views/sightings/index.html.haml:29:in `block in _app_views_sightings_index_html_haml___1424125019959434369_70236048640420'
+  app/views/sightings/index.html.haml:18:in `_app_views_sightings_index_html_haml___1424125019959434369_70236048640420'
+  actionpack (3.2.13) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236060500660/variables" for 127.0.0.1 at 2013-07-08 11:49:07 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:50:49 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.9ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (5.6ms)
+Completed 500  in 37ms
+
+NoMethodError - undefined method `id_path' for #<Sighting:0x007fc236dfad90>:
+  activemodel (3.2.13) lib/active_model/attribute_methods.rb:407:in `method_missing'
+  activerecord (3.2.13) lib/active_record/attribute_methods.rb:149:in `method_missing'
+  app/views/sightings/index.html.haml:29:in `block in _app_views_sightings_index_html_haml___1424125019959434369_70236048549840'
+  app/views/sightings/index.html.haml:18:in `_app_views_sightings_index_html_haml___1424125019959434369_70236048549840'
+  actionpack (3.2.13) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236035913440/variables" for 127.0.0.1 at 2013-07-08 11:50:49 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:50:58 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (5.9ms)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:51:01 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (1.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (1.9ms)
+Completed 200 OK in 17ms (Views: 13.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:51:29 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSighting Load (1.7ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (49.1ms)
+Completed 200 OK in 64ms (Views: 59.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:52:02 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (17.2ms)
+Completed 500  in 21ms
+
+NoMethodError - undefined method `sight_path' for #<#<Class:0x007fc233d410a0>:0x007fc236c08960>:
+  app/views/sightings/index.html.haml:23:in `block in _app_views_sightings_index_html_haml___1424125019959434369_70236059483040'
+  app/views/sightings/index.html.haml:18:in `_app_views_sightings_index_html_haml___1424125019959434369_70236059483040'
+  actionpack (3.2.13) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__1207740259799750113__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236046232840/variables" for 127.0.0.1 at 2013-07-08 11:52:02 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:52:10 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (4.6ms)
+Completed 200 OK in 18ms (Views: 15.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/1" for 127.0.0.1 at 2013-07-08 11:52:12 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.5ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (1.9ms)[0m  DELETE FROM "sightings"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (58.7ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:54:15 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.73996590000001], ["location", "10 E 21st Street, New York, NY"], ["longitude", -73.9901312], ["updated_at", Mon, 08 Jul 2013 15:54:15 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.7256153], ["location", "700 Manhattan Avenue, Brooklyn, NY"], ["longitude", -73.9516316], ["updated_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.6892494], ["location", "Statue of Liberty"], ["longitude", -74.04450039999999], ["updated_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 48.858278], ["location", "Eiffel tower"], ["longitude", 2.294254], ["updated_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00], ["image", "http://www.google.com"], ["latitude", -33.8674869], ["location", "Sidney, Australia"], ["longitude", 151.2069902], ["updated_at", Mon, 08 Jul 2013 15:54:16 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:54:23 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (1.8ms)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/3" for 127.0.0.1 at 2013-07-08 11:54:26 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "3"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/6" for 127.0.0.1 at 2013-07-08 11:54:48 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "6"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/4" for 127.0.0.1 at 2013-07-08 11:54:59 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "4"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/5" for 127.0.0.1 at 2013-07-08 11:55:03 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:55:30 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (1.8ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 96ms (Views: 94.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/3" for 127.0.0.1 at 2013-07-08 11:55:32 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "3"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/3" for 127.0.0.1 at 2013-07-08 11:55:38 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSighting Load (0.7ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "3"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 90ms (Views: 87.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sightings/3" for 127.0.0.1 at 2013-07-08 11:55:46 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "3"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (1ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 52ms (Views: 50.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/6" for 127.0.0.1 at 2013-07-08 11:55:54 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "6"]]
+  Rendered sightings/show.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/3" for 127.0.0.1 at 2013-07-08 11:56:00 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "3"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/2" for 127.0.0.1 at 2013-07-08 11:56:05 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mSighting Load (0.9ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "2"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 15ms (Views: 11.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sightings/5" for 127.0.0.1 at 2013-07-08 11:56:25 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/4" for 127.0.0.1 at 2013-07-08 11:56:42 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "4"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 10.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/5" for 127.0.0.1 at 2013-07-08 11:56:49 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/5" for 127.0.0.1 at 2013-07-08 11:57:05 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "5"]]
+  Rendered sightings/show.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 74ms (Views: 69.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:57:07 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.8ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (1.8ms)
+Completed 200 OK in 16ms (Views: 13.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:57:09 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (1.7ms)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.5ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (1.4ms)[0m  DELETE FROM "sightings"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (8.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.73996590000001], ["location", "10 E 21st Street, New York, NY"], ["longitude", -73.9901312], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.7256153], ["location", "700 Manhattan Avenue, Brooklyn, NY"], ["longitude", -73.9516316], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.6892494], ["location", "Statue of Liberty"], ["longitude", -74.04450039999999], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 48.858278], ["location", "Eiffel tower"], ["longitude", 2.294254], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", -33.8674869], ["location", "Sidney, Australia"], ["longitude", 151.2069902], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 50.534999], ["location", "Area 51"], ["longitude", 7.275217199999999], ["updated_at", Mon, 08 Jul 2013 15:57:17 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:57:25 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 16ms (Views: 13.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/12" for 127.0.0.1 at 2013-07-08 11:57:27 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "12"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.1ms | ActiveRecord: 0.4ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (1.3ms)[0m  DELETE FROM "sightings"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (8.5ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.73996590000001], ["location", "10 E 21st Street, New York, NY"], ["longitude", -73.9901312], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.7256153], ["location", "700 Manhattan Avenue, Brooklyn, NY"], ["longitude", -73.9516316], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 40.6892494], ["location", "Statue of Liberty"], ["longitude", -74.04450039999999], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 48.858278], ["location", "Eiffel tower"], ["longitude", 2.294254], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", -33.8674869], ["location", "Sidney, Australia"], ["longitude", 151.2069902], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", 50.534999], ["location", "Area 51"], ["longitude", 7.275217199999999], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00], ["image", "http://www.google.com"], ["latitude", -82.86275189999999], ["location", "Antarctica"], ["longitude", -135.0], ["updated_at", Mon, 08 Jul 2013 15:58:03 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 11:58:06 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 16ms (Views: 13.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/19" for 127.0.0.1 at 2013-07-08 11:58:07 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[35mSighting Load (0.3ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "19"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sightings/19" for 127.0.0.1 at 2013-07-08 12:05:54 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mSighting Load (0.8ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "19"]]
+  Rendered sightings/show.html.haml within layouts/application (4.8ms)
+Completed 500  in 10ms
+
+NoMethodError - undefined method `longitutde' for #<Sighting:0x007fc2351262a0>:
+  activemodel (3.2.13) lib/active_model/attribute_methods.rb:407:in `method_missing'
+  activerecord (3.2.13) lib/active_record/attribute_methods.rb:149:in `method_missing'
+  app/views/sightings/show.html.haml:8:in `_app_views_sightings_show_html_haml__4389203190385530500_70236035848960'
+  actionpack (3.2.13) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.13) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.13) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.13) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.13) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.13) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.13) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.13) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:414:in `_run__702674788772852854__process_action__3885621122014357738__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.13) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.13) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.13) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.13) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.13) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.13) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.7) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__2365337903478198866__call__2159497819207113445__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (0.9.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/70236035365700/variables" for 127.0.0.1 at 2013-07-08 12:05:54 -0400
+
+
+Started GET "/sightings/19" for 127.0.0.1 at 2013-07-08 12:06:15 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "19"]]
+  Rendered sightings/show.html.haml within layouts/application (2.8ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (6ms)  (pid 23325)
+Completed 200 OK in 133ms (Views: 131.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2013-07-08 12:06:20 -0400
+
+ActionController::RoutingError (No route matches [GET] "/sightings"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 12:06:23 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (2.2ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 12:09:27 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (2.2ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 12:09:30 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (2.2ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 12:09:43 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mSighting Load (2.8ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/sightings/14" for 127.0.0.1 at 2013-07-08 12:09:48 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "14"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/14" for 127.0.0.1 at 2013-07-08 12:09:51 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "14"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/14" for 127.0.0.1 at 2013-07-08 12:10:03 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "14"]]
+  Rendered sightings/show.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/14" for 127.0.0.1 at 2013-07-08 12:11:03 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "14"]]
+  Rendered sightings/show.html.haml within layouts/application (2.9ms)
+Completed 200 OK in 20ms (Views: 16.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/15" for 127.0.0.1 at 2013-07-08 12:11:07 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "15"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 12:11:12 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/15" for 127.0.0.1 at 2013-07-08 12:11:17 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "15"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 12:14:03 -0400
+Processing by SightingsController#index as HTML
+  [1m[35mSighting Load (0.8ms)[0m  SELECT "sightings".* FROM "sightings" 
+  Rendered sightings/index.html.haml within layouts/application (2.2ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 39ms (Views: 36.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sightings/18" for 127.0.0.1 at 2013-07-08 12:14:05 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "18"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:14:11 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:17:49 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.7ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 41ms (Views: 38.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:18:46 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 99ms (Views: 41.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:25:25 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (6ms)  (pid 23325)
+Completed 200 OK in 120ms (Views: 118.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:26:14 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:29 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (5ms)  (pid 23325)
+Completed 200 OK in 97ms (Views: 94.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:31 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:34 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 12.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:35 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 13ms (Views: 11.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:37 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 15.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:38 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 13ms (Views: 11.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:27:40 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:28:23 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 103ms (Views: 97.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:28:54 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.8ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 45ms (Views: 42.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:29:14 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:29:24 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (2.0ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 16ms (Views: 12.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:30:05 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (5ms)  (pid 23325)
+Completed 200 OK in 39ms (Views: 36.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:30:11 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 14.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:30:14 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.7ms)
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:30:15 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:30:17 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (3.0ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 11.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:31:14 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 104ms (Views: 101.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:31:39 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (1.0ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 42ms (Views: 38.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:32:19 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (1.1ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.5ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (11ms)  (pid 23325)
+Completed 200 OK in 68ms (Views: 64.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:34:49 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (5ms)  (pid 23325)
+Completed 200 OK in 101ms (Views: 98.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 12:35:26 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 97ms (Views: 95.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/16" for 127.0.0.1 at 2013-07-08 13:38:45 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "16"]]
+  Rendered sightings/show.html.haml within layouts/application (0.7ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 138ms (Views: 135.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 13:38:51 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (2.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (8.0ms)
+Completed 200 OK in 26ms (Views: 21.4ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 13:38:53 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mSighting Load (0.9ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 11.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 13:39:29 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 16ms (Views: 13.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sightings/13" for 127.0.0.1 at 2013-07-08 13:39:48 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mSighting Load (0.5ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "13"]]
+  Rendered sightings/show.html.haml within layouts/application (2.7ms)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-08 13:41:07 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.6ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (2.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 39ms (Views: 36.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sightings/17" for 127.0.0.1 at 2013-07-08 13:41:10 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mSighting Load (0.4ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "17"]]
+  Rendered sightings/show.html.haml within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sightings/17" for 127.0.0.1 at 2013-07-08 13:48:14 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mSighting Load (0.4ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "17"]]
+  Rendered sightings/show.html.haml within layouts/application (0.3ms)
+Compiled nsa_snowden.js  (0ms)  (pid 23325)
+Compiled application.js  (4ms)  (pid 23325)
+Completed 200 OK in 54ms (Views: 51.9ms | ActiveRecord: 0.4ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml

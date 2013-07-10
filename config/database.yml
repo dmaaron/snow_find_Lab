@@ -3,7 +3,8 @@ development:
   encoding: unicode
   database: nsa_snowden_development
   pool: 5
-  username: dylanoshea
+  host: localhost
+  username: davidaaron
   password:
 
 test:
@@ -11,5 +12,6 @@ test:
   encoding: unicode
   database: nsa_snowden_test
   pool: 5
-  username: dylanoshea
+  host: localhost
+  username: davidaaron
   password:

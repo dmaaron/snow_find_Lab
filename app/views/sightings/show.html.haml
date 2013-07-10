@@ -1,0 +1,9 @@
+%h1
+	Sighting# #{@sighting.id} :
+
+#map-canvas
+
+:javascript
+	snowden_map.display_map(#{@sighting.latitude},#{@sighting.longitude})
+	snowden_map.add_marker(#{@sighting.latitude},#{@sighting.longitude})
+

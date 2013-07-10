@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '3.2.13'
 
 #A terrific gem for turning  https://github.com/alexreisner/geocoder
 gem 'geocoder'
@@ -11,6 +11,11 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'bcrypt-ruby'
 
+#image upload gems
+gem 'carrierwave'
+gem 'fog'
+gem 'remotipart'
+gem 'rmagick'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
