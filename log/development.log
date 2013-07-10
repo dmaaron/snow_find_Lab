@@ -1927,3 +1927,127 @@ Connecting to database specified by database.yml
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (38.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (1.4ms)[0m  DELETE FROM "sightings"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (16.9ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Wed, 10 Jul 2013 16:12:18 UTC +00:00], ["image", "edward-snowden-is-in-the-process-of-destroying-any-support-and-sympathy-he-has-built-up.jpg"], ["latitude", 40.73996590000001], ["location", "10 E 21st Street, New York, NY"], ["longitude", -73.9901312], ["updated_at", Wed, 10 Jul 2013 16:12:18 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Wed, 10 Jul 2013 16:12:20 UTC +00:00], ["image", "snowden-hong-kong.png"], ["latitude", 40.7256153], ["location", "700 Manhattan Avenue, Brooklyn, NY"], ["longitude", -73.9516316], ["updated_at", Wed, 10 Jul 2013 16:12:20 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Wed, 10 Jul 2013 16:12:23 UTC +00:00], ["image", "images"], ["latitude", 40.6892494], ["location", "Statue of Liberty"], ["longitude", -74.04450039999999], ["updated_at", Wed, 10 Jul 2013 16:12:23 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Wed, 10 Jul 2013 16:12:25 UTC +00:00], ["image", "the-petition-to-pardon-edward-snowden-just-passed-100000-signatures-and-now-the-white-house-has-to-respond.jpg"], ["latitude", 48.858278], ["location", "Eiffel tower"], ["longitude", 2.294254], ["updated_at", Wed, 10 Jul 2013 16:12:25 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Wed, 10 Jul 2013 16:12:28 UTC +00:00], ["image", "0624_snowden-hk-full.jpg"], ["latitude", -33.8674869], ["location", "Sidney, Australia"], ["longitude", 151.2069902], ["updated_at", Wed, 10 Jul 2013 16:12:28 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Wed, 10 Jul 2013 16:12:31 UTC +00:00], ["image", "edward-snowden-petition.jpg"], ["latitude", 50.534999], ["location", "Area 51"], ["longitude", 7.275217199999999], ["updated_at", Wed, 10 Jul 2013 16:12:31 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "sightings" ("created_at", "image", "latitude", "location", "longitude", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Wed, 10 Jul 2013 16:12:32 UTC +00:00], ["image", "0617-snowden-live-chat_full_600.jpg"], ["latitude", -82.86275189999999], ["location", "Antarctica"], ["longitude", -135.0], ["updated_at", Wed, 10 Jul 2013 16:12:32 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-10 12:13:38 -0400
+Processing by SightingsController#index as HTML
+  [1m[36mSighting Load (0.5ms)[0m  [1mSELECT "sightings".* FROM "sightings" [0m
+  Rendered sightings/index.html.haml within layouts/application (10.7ms)
+Completed 200 OK in 169ms (Views: 116.0ms | ActiveRecord: 11.4ms)
+
+
+Started GET "/sightings/28" for 127.0.0.1 at 2013-07-10 12:13:42 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[35mSighting Load (2.1ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "28"]]
+  Rendered sightings/show.html.haml within layouts/application (376.7ms)
+Completed 200 OK in 393ms (Views: 388.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/sightings/29" for 127.0.0.1 at 2013-07-10 12:14:10 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mSighting Load (0.7ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "29"]]
+  Rendered sightings/show.html.haml within layouts/application (2.1ms)
+Completed 200 OK in 16ms (Views: 13.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sightings/29" for 127.0.0.1 at 2013-07-10 12:14:56 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[35mSighting Load (0.6ms)[0m  SELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1  [["id", "29"]]
+  Rendered sightings/show.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/fish?species=1" for 127.0.0.1 at 2013-07-10 13:43:13 -0400
+
+ActionController::RoutingError (No route matches [POST] "/fish"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/fish/new" for 127.0.0.1 at 2013-07-10 13:43:15 -0400
+
+ActionController::RoutingError (No route matches [GET] "/fish/new"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/davidaaron/.rvm/rubies/ruby-1.9.3-p429/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/davidaaron/.rvm/gems/ruby-1.9.3-p429/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/sightings/29" for 127.0.0.1 at 2013-07-10 14:00:35 -0400
+Processing by SightingsController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mSighting Load (14.7ms)[0m  [1mSELECT "sightings".* FROM "sightings" WHERE "sightings"."id" = $1 LIMIT 1[0m  [["id", "29"]]
+  Rendered sightings/show.html.haml within layouts/application (446.9ms)
+Completed 200 OK in 904ms (Views: 619.8ms | ActiveRecord: 141.6ms)

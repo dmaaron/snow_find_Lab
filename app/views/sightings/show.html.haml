@@ -1,6 +1,10 @@
 %h1
 	Sighting# #{@sighting.id} :
 
+= image_tag @sighting.image.large
+= image_tag @sighting.image.medium
+= image_tag @sighting.image.thumb
+
 #map-canvas
 
 :javascript
